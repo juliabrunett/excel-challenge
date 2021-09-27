@@ -199,7 +199,7 @@ p {
 
 /* Navbar: toggler when page is reduced */
 .navbar-light .navbar-toggler {
-    color: gray;
+    color: #808080;
     border-color: white;
     margin-right: 15px;
 }
@@ -221,6 +221,24 @@ p a {
     text-decoration: underline;
     
 }
+
+.footer-attribution {
+    background-color: white;
+    padding: 10px;
+    font-size: 14px;
+    
+}
+
+.footer-attribution a {
+    color:#294A2Fff;
+    text-decoration: underline;
+}
+
+#home-svg {
+    margin-right: 15px;
+    padding: 2px;
+}
+
 
 /* Media Query: when width is reduced 765px*/
 @media (max-width: 765px) {
