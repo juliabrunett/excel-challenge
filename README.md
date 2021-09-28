@@ -1,5 +1,6 @@
 # excel-challenge
-Excel Homework: In this project, I analyzed 4,000 Kickstarter campaigns to find key insights on what types of campaigns ultimately reach their goal. The summarized discoveries are located in the [Excel Report](./Excel-Report.docx).
+# Excel Homework: 
+In this project, I analyzed 4,000 Kickstarter campaigns to find key insights on what types of campaigns ultimately reach their goal. The summarized discoveries are located in the [Excel Report](./Excel-Report.docx).
 
 Updates as of 9/27/21:
 - Created a page to view the results of this analysis at this [link](https://juliabrunett.github.io/excel-challenge/Kickstarter-Campaigns/index.html).
