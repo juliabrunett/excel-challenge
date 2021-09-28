@@ -70,12 +70,25 @@ p {
     font-size: 25px;
     font-weight: bold;
     color: white;
-    background: #90A187ff;
+    /* background: #90A187ff; */
     padding: 20px;
     margin-left: 20px;
     color: white;
     font-family: 'Cambria', Georgia, serif;
 
+}
+
+#logo {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-right: 1px;
+    margin-left: 1px;
+    padding: 0px;
+    border: #90A187ff solid;
+    border-width: 8px;
 }
 
 /* Navbar: list objects */
@@ -90,7 +103,7 @@ p {
 .navbar li a {
     text-decoration: none;
     color: black;
-    font-size: 15px;
+    font-size: 18px;
     text-align: right;
 
 }
