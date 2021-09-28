@@ -40,11 +40,17 @@ body {
     font-family: 'Cambria', Georgia, serif;
 }
 
+/* Title for Pages */
+#title {
+    margin-bottom: 20px;
+}
+
 /* Paragraphs */
 p {
     /*text-align: justify;*/
     padding: 10px;
     margin-top: 10px;
+    background-color: white;
 }
 
 /* Navbar */
@@ -53,6 +59,10 @@ p {
     background: white;
     width: 100%;
 
+}
+
+#table-area {
+    background-color: white;
 }
 
 /* Navbar: specifically the website title */
