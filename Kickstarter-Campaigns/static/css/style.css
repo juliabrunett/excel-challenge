@@ -12,6 +12,15 @@
 --columbia-blue: #C5E0EBff;
 --artichoke: #90A187ff; */
 
+.filter-form {
+    margin-bottom: 10px;
+}
+
+.btn-primary{
+    background-color: #90A187ff;
+    border-color: #90A187ff;
+    align-self: right;
+}
 
 /* Heading 1 */
 h1 {
@@ -262,6 +271,10 @@ p a {
     padding: 2px;
 }
 
+/* Table Headers */
+#table-area th {
+    text-align: center;
+}
 
 /* Media Query: when width is reduced 765px*/
 @media (max-width: 765px) {

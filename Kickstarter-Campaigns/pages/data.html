@@ -64,15 +64,91 @@
         </div>
 
 <!-- Code to Add Filter: If Needed -->
-<!--Row-->
-<!-- <div class="row margin-top-75"> -->
-  <!--Column for Input Form-->
-  <!-- <div class="col-md-3 col-sm-12"> -->
-      <!--Aside with class: filters-->
-      <!-- <aside class="filters">
-          <h2>Filters</h2>
-      </aside>
-  </div> -->
+<form class="filter-form">
+    <!-- NEW ROW -->
+    <div class="form-row">
+    <!-- State of Campaign -->
+    <div class="form-group col-md-3">
+        <label for="inputState">State of Campaign</label>
+        <select id="inputState" class="form-control">
+            <option selected>Choose...</option>
+        </select>
+        </div>
+
+    <!-- Staff Pick -->
+    <div class="form-group col-md-3">
+    <label for="inputStaffPick">Staff Pick</label>
+    <select id="inputStaffPick" class="form-control">
+        <option selected>Choose...</option>
+        <option>true</option>
+        <option>false</option>
+    </select>
+    </div>
+
+    <!-- Pledge Amounts -->
+    <div class="form-group col-md-3">
+    <label for="inputMinPledge">Minimum Pledged</label>
+    <input type="number" class="form-control" id="inputMinPledge" placeholder="0">
+    </div>
+    <div class="form-group col-md-3">
+    <label for="inputMaxPledge">Maximum Pledged</label>
+    <input type="number" class="form-control" id="inputMaxPledge" placeholder="100">
+    </div>
+</div>
+
+      <!-- NEW ROW -->
+      <div class="form-row">
+        <!-- Category -->
+      <div class="form-group col-md-3">
+        <label for="inputCat">Category</label>
+        <select id="inputCat" class="form-control">
+          <option selected>Choose...</option>
+        </select>
+      </div>
+      <!-- Sub Category -->
+      <div class="form-group col-md-3">
+        <label for="inputSubCat">Sub-Category</label>
+        <select id="inputSubCat" class="form-control">
+          <option selected>Choose...</option>
+        </select>
+      </div>
+
+       <!-- Goal Amounts -->
+       <div class="form-group col-md-3">
+        <label for="inputMinGoal">Minimum Goal</label>
+        <input type="number" class="form-control" id="inputMinGoal" placeholder="0">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputMaxGoal">Maximum Goal</label>
+        <input type="numnber" class="form-control" id="inputMaxGoal" placeholder="100">
+      </div>
+    </div>
+
+    <!-- NEW ROW -->
+    <div class="form-row">
+        <!-- Country -->
+        <div class="form-group col-md-6">
+            <label for="inputCountry">Country</label>
+            <select id="inputCountry" class="form-control">
+                <option selected>Choose...</option>
+            </select>
+        </div>
+
+        <!-- Percent Funded -->
+        <div class="form-group col-md-3">
+            <label for="inputMinPerFunded">Minimum Percent Funded</label>
+            <input type="number" class="form-control" id="inputMinPerFunded" placeholder="0">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputMaxPerFunded">Maximum Percent Funded</label>
+            <input type="number" class="form-control" id="inputMaxPerFunded" placeholder="100">
+        </div>
+    </div>
+
+    <!-- Button -->
+    <button type="submit" class="btn btn-primary" id="filter-button">Filter</button>
+    
+</form>
 
 
     <!--Table of Data-->
@@ -81,7 +157,7 @@
     <div class="col-md-12">
       <!--Table area-->
       <div id="table-area">
-      <!--UFO Table-->
+      <!-- Table-->
       <table id="table-data" class="table table-striped table-responsive">
       <!--Table Headers-->
       <thead>
@@ -100,13 +176,13 @@
               <th class="table-head">Staff Pick</th>
               <th class="table-head">Backers Count</th>
               <th class="table-head">Spotlight</th>
-              <th class="table-head">Cat & Sub-Cat</th>
+              <th class="table-head">Category & Sub-Cat</th>
               <th class="table-head">Percent Funded</th>
               <th class="table-head">Average Donation</th>
               <th class="table-head">Category</th>
               <th class="table-head">Sub-Category</th>
-              <th class="table-head">Date Created Conversion</th>
-              <th class="table-head">Date Ended Conversion</th>
+              <th class="table-head">Date Created</th>
+              <th class="table-head">Date Ended</th>
           </tr>
       </thead>
       <!--Tbody-->
