@@ -66,9 +66,21 @@ body {
     background-color: white;
 }
 
+#summary {
+    padding: 30px;
+    margin-top: 10px;
+    background-color: white;
+    margin-bottom: 20px;
+    
+}
+
+#summary p {
+    font-weight: bold;
+}
+
+
 #search-results p {
     padding: 10px;
-    /* margin-top: 10px; */
 }
 
 /* Navbar */
@@ -194,9 +206,9 @@ body {
 
 /* Full Image: for full image */
 #full-image {
-    
     width: 100%;
     float: left;
+    margin-bottom: 20px;
 }
 
 /* Pivot Image: for pivot table images */
@@ -204,6 +216,7 @@ body {
     margin-top: 20px;
     width: 50%;
     float: center;
+    margin-bottom: 20px;
 }
 
 /* Pivot Image: for pivot table images */
