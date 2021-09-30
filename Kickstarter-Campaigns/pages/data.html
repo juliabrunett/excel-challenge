@@ -67,86 +67,62 @@
 <form class="filter-form">
     <!-- NEW ROW -->
     <div class="form-row">
-    <!-- State of Campaign -->
-    <div class="form-group col-md-3">
-        <label for="inputState">State of Campaign</label>
-        <select id="inputState" class="form-control">
+        <!-- Category -->
+        <div class="form-group col-md-6">
+        <label for="inputCat">Category</label>
+        <select id="category" class="form-control inputCat">
             <option selected>Choose...</option>
         </select>
         </div>
-
-    <!-- Staff Pick -->
-    <div class="form-group col-md-3">
-    <label for="inputStaffPick">Staff Pick</label>
-    <select id="inputStaffPick" class="form-control">
-        <option selected>Choose...</option>
-        <option>true</option>
-        <option>false</option>
-    </select>
-    </div>
-
-    <!-- Pledge Amounts -->
-    <div class="form-group col-md-3">
-    <label for="inputMinPledge">Minimum Pledged</label>
-    <input type="number" class="form-control" id="inputMinPledge" placeholder="0">
-    </div>
-    <div class="form-group col-md-3">
-    <label for="inputMaxPledge">Maximum Pledged</label>
-    <input type="number" class="form-control" id="inputMaxPledge" placeholder="100">
-    </div>
-</div>
-
-      <!-- NEW ROW -->
-      <div class="form-row">
-        <!-- Category -->
-      <div class="form-group col-md-3">
-        <label for="inputCat">Category</label>
-        <select id="inputCat" class="form-control">
-          <option selected>Choose...</option>
-        </select>
-      </div>
-      <!-- Sub Category -->
-      <div class="form-group col-md-3">
+        <!-- Sub Category -->
+        <div class="form-group col-md-6">
         <label for="inputSubCat">Sub-Category</label>
-        <select id="inputSubCat" class="form-control">
-          <option selected>Choose...</option>
+        <select id="sub_category" class="form-control inputSubCat">
+            <option selected>Choose...</option>
         </select>
-      </div>
-
-       <!-- Goal Amounts -->
-       <div class="form-group col-md-3">
-        <label for="inputMinGoal">Minimum Goal</label>
-        <input type="number" class="form-control" id="inputMinGoal" placeholder="0">
-      </div>
-      <div class="form-group col-md-3">
-        <label for="inputMaxGoal">Maximum Goal</label>
-        <input type="numnber" class="form-control" id="inputMaxGoal" placeholder="100">
-      </div>
+        </div>
     </div>
+
+   
 
     <!-- NEW ROW -->
     <div class="form-row">
-        <!-- Country -->
-        <div class="form-group col-md-6">
-            <label for="inputCountry">Country</label>
-            <select id="inputCountry" class="form-control">
-                <option selected>Choose...</option>
-            </select>
-        </div>
+    <!-- State of Campaign -->
+    <div class="form-group col-md-4">
+        <label for="inputState">State of Campaign</label>
+        <select id="state" class="form-control inputState">
+            <option selected>Choose...</option>
+        </select>
+    </div>
+    <!-- Staff Pick -->
+    <div class="form-group col-md-4">
+        <label for="inputStaffPick">Staff Pick</label>
+        <select id="staff_pick" class="form-control inputStaffPick">
+            <option selected>Choose...</option>
+        </select>
+    </div>
+     
+       <!-- Country -->
+       <div class="form-group col-md-4">
+        <label for="inputCountry">Country</label>
+        <select id="country" class="form-control inputCountry">
+            <option selected>Choose...</option>
+        </select>
+    </div>
+    </div> 
 
-        <!-- Percent Funded -->
-        <div class="form-group col-md-3">
-            <label for="inputMinPerFunded">Minimum Percent Funded</label>
-            <input type="number" class="form-control" id="inputMinPerFunded" placeholder="0">
+    <div class="row">
+        <div class="col-md-9">
+            <div id="search-results"></div>
         </div>
-        <div class="form-group col-md-3">
-            <label for="inputMaxPerFunded">Maximum Percent Funded</label>
-            <input type="number" class="form-control" id="inputMaxPerFunded" placeholder="100">
+    
+        <!-- Button -->
+        <div class="col-md-3" id="button-group">
+            <!-- <button type="submit" class="btn btn-primary" id="filter-button">Filter</button> -->
+            <button type="submit" class="btn btn-primary" id="reset-button">Reset</button>
         </div>
     </div>
-
-    <!-- Button -->
-    <button type="submit" class="btn btn-primary" id="filter-button">Filter</button>
+    
     
 </form>
 

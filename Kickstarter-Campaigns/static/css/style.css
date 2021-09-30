@@ -12,8 +12,12 @@
 --columbia-blue: #C5E0EBff;
 --artichoke: #90A187ff; */
 
+#button-group {
+    text-align: right;
+}
+
 .filter-form {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .btn-primary{
@@ -55,11 +59,16 @@ body {
 }
 
 /* Paragraphs */
-p {
+#title p {
     /*text-align: justify;*/
     padding: 10px;
     margin-top: 10px;
     background-color: white;
+}
+
+#search-results p {
+    padding: 10px;
+    /* margin-top: 10px; */
 }
 
 /* Navbar */

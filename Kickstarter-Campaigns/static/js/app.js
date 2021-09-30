@@ -9,12 +9,24 @@ d3.json("../data/data.json").then(function(tableData) {
     // Select the tbody in the html table
     var tbody = d3.select("tbody");
 
-    init();
+    // FOR FILTERS:
+    var button = d3.select("#reset-button");
+    var filter_form = d3.selectAll(".form-group");
+    var search_results = d3.select("#search-results");
 
+    // When button is clicked
+    button.on("click", runReset);
+    filter_form.on("change", runEnter);
+
+    // Create object to hold filters
+    var filter = {};
+
+    init();
 
 
 // Init function to create table on page
 function init() {
+
     // Take data and append results to each row
     tableData.forEach(id => {
     // console.log(id);
@@ -28,42 +40,108 @@ function init() {
             var data_cell = row.append("td").text(value);
         });
     });
+
+    // Find number of results
+    var num_results = tableData.length;
+
+    // Append search number of search results
+    search_results.append("p").text(`Number of results: ${num_results}`);
 }
 
-
-// FOR FILTERS:
-var button = d3.select("#filter-button");
-
-// When button is clicked
-button.on("click", runEnter);
 
 // Run enter function - when filter button is ran
 function runEnter() {
 
     // Reset the html
-    runReset();
+    runHTMLReset();
 
     // Keep the page from refreshing
     d3.event.preventDefault();
 
-    // Select the inputs
-    var inputState = d3.select("#inputState").property("value");
-    var inputStaffPick = d3.select("#inputStaffPick").property("value");
-    var inputMinPledge = d3.select("#inputMinPledge").property("value");
-    var inputMaxPledge = d3.select("#inputMaxPledge").property("value");
-    var inputCat = d3.select("#inputCat").property("value");
-    var inputSubCat = d3.select("#inputSubCat").property("value");
-    var inputMinGoal = d3.select("#inputMinGoal").property("value");
-    var inputMaxGoal = d3.select("#inputMaxGoal").property("value");
-    var inputState = d3.select("#inputState").property("value");
-    var inputMinPerFunded = d3.select("#inputMinPerFunded").property("value");
-    var inputMaxPerFunded = d3.select("#inputMaxPerFunded").property("value");
+    // INPUTS:
+    // Select the input
+    var inputElement = d3.select(this).select("select");
+    // Find the value of the input
+    var inputValue = inputElement.property("value");
+    // Find the type of the input
+    var inputType = inputElement.attr("id");
 
-    console.log(inputState);
+    console.log("Inputs")
+    console.log("------------")
+    console.log("Element: ", inputElement);
+    console.log("Value: ", inputValue);
+    console.log("Type: ", inputType);
 
-    // Run select function
-    runSelect();
-}
+
+    // Add to the filter object
+    if (inputValue) {
+        filter[inputType] = inputValue;
+    }
+    else {
+        delete filter[inputType];
+    }
+
+    console.log("Filter: ", filter);
+    
+    // Call the filtered table function 
+    filterTable();
+    
+};
+
+// Create the filtered table
+function filterTable() {
+
+    // // Reset table html
+    // runHTMLReset();
+
+    var filteredData = tableData;
+    console.log(filteredData);
+
+    // Run through filter object and filter data accordingly
+    Object.entries(filter).forEach(([key, value]) => {
+
+        if (key === "staff_pick") {
+            if (value === "false") {
+                value = Boolean(false);
+            }
+            else {
+                value = Boolean(true);
+            }
+            
+            filteredData = filteredData.filter(id => id[key] === value);
+        }
+        else {
+            filteredData = filteredData.filter(id => id[key] === value);
+        }
+        // console.log(key);
+        // console.log(value);
+    
+    });
+
+    // console.log(filteredData);
+
+    // Find number of results
+    var num_results = filteredData.length;
+    // console.log(num_results);
+
+    // Append search number of search results
+    search_results.append("p").text(`Number of results: ${num_results}`);
+
+    // Take data and append results to each row
+    filteredData.forEach(id => {
+        // console.log(id);
+    
+        // Append a row to the tbody
+        var row = tbody.append("tr");
+    
+            Object.entries(id).forEach(([key, value]) => {
+                // console.log(key, value);
+    
+                var data_cell = row.append("td").text(value);
+            });
+    });
+
+};
 
 // Define the reset button function
 function runReset() {
@@ -73,20 +151,40 @@ function runReset() {
     // Reset the table
     tbody.html("");
 
+    search_results.html("");
+
     init();
-}
+};
 
-function runSelect() {
+// Define the reset button function
+function runHTMLReset() {
+    
+    // Select the tbody in the html table
+    var tbody = d3.select("tbody");
+    // Reset the table
+    tbody.html("");
 
-}
+    search_results.html("");
 
-    countryDropdown = d3.select("#inputCountry");
-    categoryDropdown = d3.select("#inputCat");
-    subCategoryDropdown = d3.select("#inputSubCat");
-    stateDropdown = d3.select("#inputState");
-    staffPickDropdown = d3.select("#inputStaffPick");
+};
 
+    // Loop through each data point to convert
+    // tableData.forEach(data => {
+    //     // Convert string variables to numbers
+    //     data.percent_funded = +data.percent_funded;
+    //     data.pledged = +data.pledged;
+    //     data.goal = +data.goal;
 
+    // });
+
+    // Select dropdown menus
+    countryDropdown = d3.select(".inputCountry");
+    categoryDropdown = d3.select(".inputCat");
+    subCategoryDropdown = d3.select(".inputSubCat");
+    stateDropdown = d3.select(".inputState");
+    staffPickDropdown = d3.select(".inputStaffPick");
+
+    // GRAB DATASETS FOR FILTERS:
     // Countries
     var countries = tableData.map(id => id.country);
 
@@ -104,11 +202,8 @@ function runSelect() {
         item.text(country);
     });
 
-    // Goal
-    var goal = tableData.map(id => id.goal);
-
     // Category
-    var category = tableData.map(id => id.Category);
+    var category = tableData.map(id => id.category);
 
     // GET RID OF DUPLICATES
     // Convert the array to a set
@@ -125,7 +220,9 @@ function runSelect() {
     });
 
     // Sub-Category
-    var subCategory = tableData.map(id => id["Sub-Category"]);
+    var subCategory = tableData.map(id => id.sub_category);
+
+    // console.log(subCategory);
 
     // GET RID OF DUPLICATES
     // Convert the array to a set
@@ -159,10 +256,52 @@ function runSelect() {
     });
 
     // Staff Pick
-    var staff_pick = tableData.map(id => id["staff_pick"]);
+    var staff_pick = tableData.map(id => id.staff_pick);
 
-    // Percent Funded
-    var percent_funded = tableData.map(id => id["Percent Funded"]);
+    // GET RID OF DUPLICATES
+    // Convert the array to a set
+    var setStaffPick = new Set(staff_pick);
+    // Convert the set back into an array
+    var uniqueStaffPick = Array.from(setStaffPick);
 
-    // console.log(category);
-});
+    // For each city, append the name to a dropdown attribute
+    uniqueStaffPick.forEach(pick => {
+        
+        var item = staffPickDropdown.append("option");
+        item.attr("class", "dropdown-item");
+        item.text(pick);
+    });
+    
+
+    // // Percent Funded
+    // var percent_funded = tableData.map(id => id.percent_funded);
+
+    // // MIN & MAX
+    // var max_percent = percent_funded.reduce(function(a, b) {
+    //     return Math.max(a, b);
+    // }, 0);
+    // var min_percent = percent_funded.reduce(function(a, b) {
+    //     return Math.max(a, b);
+    // }, 0);
+
+    //  // Goal
+    // var goal = tableData.map(id => id.goal);
+    // // MIN & MAX
+    // var max_goal = goal.reduce(function(a, b) {
+    //     return Math.max(a, b);
+    // }, 0);
+    // var min_goal = goal.reduce(function(a, b) {
+    //     return Math.max(a, b);
+    // }, 0);
+
+    // // Pledged
+    // var pledged = tableData.map(id => id.pledged);
+    // // MIN & MAX
+    // var max_pledged = pledged.reduce(function(a, b) {
+    //     return Math.max(a, b);
+    // }, 0);
+    // var min_pledged = pledged.reduce(function(a, b) {
+    //     return Math.max(a, b);
+    // }, 0);
+
+}); // End of code
