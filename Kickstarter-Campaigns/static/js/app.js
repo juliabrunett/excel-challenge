@@ -4,33 +4,7 @@ var table = d3.select("#table-data");
 // Import from data.json
 d3.json("../data/data.json").then(function(tableData) {
 
-    console.log(tableData);
-
-    match_sub = [];
-    match_cat = [];
-    match_country = [];
-
-    // Create an object that determines matching cat/sub-cat
-    matching = {};
-
-    tableData.forEach(id =>
-    {
-        matching[id.sub_category] = id.category;
-
-        // if (matching[id.sub_category]) {
-        //     console.log("duplicate");
-        // }
-        match_sub.push(id.sub_category);
-        match_cat.push(id.category);
-        match_country.push(id.country);
-    });
-
-
-    // console.log(matching);
-
-    // console.log(match_sub);
-    // console.log(match_cat);
-    // console.log(match_country);
+    // console.log(tableData);
 
     // Select the tbody in the html table
     var tbody = d3.select("tbody");
@@ -47,12 +21,12 @@ d3.json("../data/data.json").then(function(tableData) {
     // Create object to hold filters
     var filter = {};
 
+    // Initialize table
     init();
 
 
 // Init function to create table on page
 function init() {
-
     // Take data and append results to each row
     tableData.forEach(id => {
     // console.log(id);
@@ -72,8 +46,7 @@ function init() {
 
     // Append search number of search results
     search_results.append("p").text(`Number of results: ${num_results}`);
-}
-
+};
 
 // Run enter function - when filter button is ran
 function runEnter() {
@@ -92,12 +65,12 @@ function runEnter() {
     // Find the type of the input
     var inputType = inputElement.attr("id");
 
-    console.log("Inputs")
-    console.log("------------")
-    console.log("Element: ", inputElement);
-    console.log("Value: ", inputValue);
-    console.log("Type: ", inputType);
-
+    // Print Results:
+    // console.log("Inputs")
+    // console.log("------------")
+    // console.log("Element: ", inputElement);
+    // console.log("Value: ", inputValue);
+    // console.log("Type: ", inputType);
 
     // Add to the filter object
     if (inputValue) {
@@ -107,7 +80,7 @@ function runEnter() {
         delete filter[inputType];
     }
 
-    console.log("Filter: ", filter);
+    // console.log("Filter: ", filter);
     
     // Call the filtered table function 
     var filteredData = filterTable();
@@ -120,11 +93,9 @@ function runEnter() {
 // Create the filtered table
 function filterTable() {
 
-    // // Reset table html
-    // runHTMLReset();
-
+    // Grab data
     var filteredData = tableData;
-    console.log(filteredData);
+    // console.log(filteredData);
 
     // Run through filter object and filter data accordingly
     Object.entries(filter).forEach(([key, value]) => {
@@ -144,8 +115,6 @@ function filterTable() {
         }
         // console.log(key);
         // console.log(value);
-
-    
     });
 
     // console.log(filteredData);
@@ -159,7 +128,6 @@ function filterTable() {
 
     // Take data and append results to each row
     filteredData.forEach(id => {
-        // console.log(id);
     
         // Append a row to the tbody
         var row = tbody.append("tr");
@@ -172,7 +140,6 @@ function filterTable() {
     });
 
     return filteredData;
-
 };
 
 // Define the reset button function
@@ -202,37 +169,6 @@ function runHTMLReset() {
     search_results.html("");
 
 };
-
-function resetCategory() {
-    categoryDropdown.selectAll("option.dropdown-item").remove();
-}
-
-function resetSubCategory() {
-    subCategoryDropdown.selectAll("option.dropdown-item").remove();
-    
-}
-
-function resetCountry() {
-    countryDropdown.selectAll("option.dropdown-item").remove();
-}
-
-function resetState() {
-    stateDropdown.selectAll("option.dropdown-item").remove();
-}
-
-function resetStaffPick() {
-    staffPickDropdown.selectAll("option.dropdown-item").remove();
-}
-
-    // Loop through each data point to convert
-    // tableData.forEach(data => {
-    //     // Convert string variables to numbers
-    //     data.percent_funded = +data.percent_funded;
-    //     data.pledged = +data.pledged;
-    //     data.goal = +data.goal;
-
-    // });
-
     // Select dropdown menus
     countryDropdown = d3.select(".inputCountry");
     categoryDropdown = d3.select(".inputCat");
@@ -277,8 +213,6 @@ function resetStaffPick() {
 
     // Sub-Category
     var subCategory = tableData.map(id => id.sub_category);
-
-    // console.log(subCategory);
 
     // GET RID OF DUPLICATES
     // Convert the array to a set
@@ -327,13 +261,49 @@ function resetStaffPick() {
         item.attr("class", "dropdown-item");
         item.text(pick);
     });
-    
+
+// Function to reset dropdown
+function resetDropdown(dropdown) {
+    if (dropdown === "category") {
+        subCategoryDropdown.selectAll("option.dropdown-item").remove();
+        countryDropdown.selectAll("option.dropdown-item").remove();
+        stateDropdown.selectAll("option.dropdown-item").remove();
+        staffPickDropdown.selectAll("option.dropdown-item").remove();
+    }
+    else if (dropdown === "sub_category") {
+        categoryDropdown.selectAll("option.dropdown-item").remove();
+        countryDropdown.selectAll("option.dropdown-item").remove();
+        stateDropdown.selectAll("option.dropdown-item").remove();
+        staffPickDropdown.selectAll("option.dropdown-item").remove();
+    }
+    else if (dropdown === "country") {
+        categoryDropdown.selectAll("option.dropdown-item").remove();
+        subCategoryDropdown.selectAll("option.dropdown-item").remove();
+        stateDropdown.selectAll("option.dropdown-item").remove();
+        staffPickDropdown.selectAll("option.dropdown-item").remove();
+    }
+    else if (dropdown === "staff_pick") {
+        categoryDropdown.selectAll("option.dropdown-item").remove();
+        subCategoryDropdown.selectAll("option.dropdown-item").remove();
+        countryDropdown.selectAll("option.dropdown-item").remove();
+        stateDropdown.selectAll("option.dropdown-item").remove();
+    }
+    else if (dropdown === "state") {
+        categoryDropdown.selectAll("option.dropdown-item").remove();
+        subCategoryDropdown.selectAll("option.dropdown-item").remove();
+        countryDropdown.selectAll("option.dropdown-item").remove();
+        staffPickDropdown.selectAll("option.dropdown-item").remove();
+    };
+};
+
+// Function to update the dropdown
 function updateDropdown(data, dropdown) {
 
+    // Reset the dropdown
+    resetDropdown(dropdown);
+
+    // Determine the conditions
     if (dropdown != "category") {
-
-        resetCategory();
-
         // Category
         var category = data.map(id => id.category);
 
@@ -350,17 +320,10 @@ function updateDropdown(data, dropdown) {
             item.attr("class", "dropdown-item");
             item.text(category);
         });
-        
-        
     }
     if (dropdown != "sub_category") {
-
-        resetSubCategory();
-
         // Sub-Category
         var subCategory = data.map(id => id.sub_category);
-
-        // console.log(subCategory);
 
         // GET RID OF DUPLICATES
         // Convert the array to a set
@@ -375,13 +338,8 @@ function updateDropdown(data, dropdown) {
             item.attr("class", "dropdown-item");
             item.text(subCat);
         });
-        
-
     }
     if (dropdown != "country") {
-
-        resetCountry();
-
         // Countries
         var countries = data.map(id => id.country);
 
@@ -400,9 +358,6 @@ function updateDropdown(data, dropdown) {
         });
     }
     if (dropdown != "state") {
-
-        resetState();
-
         // State of Campaign
         var state = data.map(id => id.state);
 
@@ -421,9 +376,6 @@ function updateDropdown(data, dropdown) {
         });
     }
     if (dropdown != "staff_pick") {
-
-        resetStaffPick();
-
         // Staff Pick
         var staff_pick = data.map(id => id.staff_pick);
 
@@ -440,38 +392,6 @@ function updateDropdown(data, dropdown) {
             item.attr("class", "dropdown-item");
             item.text(pick);
         });
-    }
-}
-
-    // // Percent Funded
-    // var percent_funded = tableData.map(id => id.percent_funded);
-
-    // // MIN & MAX
-    // var max_percent = percent_funded.reduce(function(a, b) {
-    //     return Math.max(a, b);
-    // }, 0);
-    // var min_percent = percent_funded.reduce(function(a, b) {
-    //     return Math.max(a, b);
-    // }, 0);
-
-    //  // Goal
-    // var goal = tableData.map(id => id.goal);
-    // // MIN & MAX
-    // var max_goal = goal.reduce(function(a, b) {
-    //     return Math.max(a, b);
-    // }, 0);
-    // var min_goal = goal.reduce(function(a, b) {
-    //     return Math.max(a, b);
-    // }, 0);
-
-    // // Pledged
-    // var pledged = tableData.map(id => id.pledged);
-    // // MIN & MAX
-    // var max_pledged = pledged.reduce(function(a, b) {
-    //     return Math.max(a, b);
-    // }, 0);
-    // var min_pledged = pledged.reduce(function(a, b) {
-    //     return Math.max(a, b);
-    // }, 0);
-
+    };
+};
 }); // End of code
