@@ -16,11 +16,27 @@
     text-align: right;
 }
 
+/* GitHub Logo */
+#github-logo {
+    background-color: white;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 30px;
+    /* margin-left: 2px; */
+}
+
+#github-logo img {
+    align-self: center;
+    padding: 20px;
+}
+
+/* Filter Form Background */
 .filter-form {
     margin-bottom: 20px;
 }
 
-.btn-primary{
+/* Primary Button */
+.btn-primary {
     background-color: #90A187ff;
     border-color: #90A187ff;
     align-self: right;
@@ -71,10 +87,18 @@ body {
     margin-top: 10px;
     background-color: white;
     margin-bottom: 20px;
-    
+    font-size: 18px;
 }
 
-#summary p {
+#report {
+    padding: 30px;
+    margin-top: 10px;
+    background-color: white;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+#report p {
     font-weight: bold;
 }
 
