@@ -61,6 +61,7 @@ h2 {
     padding: 10px;
     font-family: 'Cambria', Georgia, serif;
     font-weight: bold;
+    background-color: white;
 }
 
 /* Body */
@@ -82,6 +83,7 @@ body {
     background-color: white;
 }
 
+/* Summary Box */
 #summary {
     padding: 30px;
     margin-top: 10px;
@@ -90,6 +92,7 @@ body {
     font-size: 18px;
 }
 
+/* Report box */
 #report {
     padding: 30px;
     margin-top: 10px;
@@ -98,11 +101,12 @@ body {
     font-size: 18px;
 }
 
+/* Report paragraphs */
 #report p {
     font-weight: bold;
 }
 
-
+/* Search Results paragraph */
 #search-results p {
     padding: 10px;
 }
@@ -115,6 +119,7 @@ body {
 
 }
 
+/* Table Area */
 #table-area {
     background-color: white;
 }
@@ -132,6 +137,7 @@ body {
 
 }
 
+/* Main Logo */
 #logo {
     width: 100px;
     height: auto;
@@ -300,21 +306,10 @@ p a {
     
 }
 
-.footer-attribution {
-    background-color: white;
-    padding: 10px;
-    font-size: 14px;
-    
-}
-
-.footer-attribution a {
+/* List attribute */
+li a {
     color:#294A2Fff;
     text-decoration: underline;
-}
-
-#home-svg {
-    margin-right: 15px;
-    padding: 2px;
 }
 
 /* Table Headers */
