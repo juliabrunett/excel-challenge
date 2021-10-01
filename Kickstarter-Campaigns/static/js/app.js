@@ -6,6 +6,32 @@ d3.json("../data/data.json").then(function(tableData) {
 
     console.log(tableData);
 
+    match_sub = [];
+    match_cat = [];
+    match_country = [];
+
+    // Create an object that determines matching cat/sub-cat
+    matching = {};
+
+    tableData.forEach(id =>
+    {
+        matching[id.sub_category] = id.category;
+
+        // if (matching[id.sub_category]) {
+        //     console.log("duplicate");
+        // }
+        match_sub.push(id.sub_category);
+        match_cat.push(id.category);
+        match_country.push(id.country);
+    });
+
+
+    // console.log(matching);
+
+    // console.log(match_sub);
+    // console.log(match_cat);
+    // console.log(match_country);
+
     // Select the tbody in the html table
     var tbody = d3.select("tbody");
 
@@ -84,7 +110,10 @@ function runEnter() {
     console.log("Filter: ", filter);
     
     // Call the filtered table function 
-    filterTable();
+    var filteredData = filterTable();
+
+    // Update dropdowns
+    updateDropdown(filteredData, inputType);
     
 };
 
@@ -115,6 +144,7 @@ function filterTable() {
         }
         // console.log(key);
         // console.log(value);
+
     
     });
 
@@ -141,6 +171,8 @@ function filterTable() {
             });
     });
 
+    return filteredData;
+
 };
 
 // Define the reset button function
@@ -151,12 +183,14 @@ function runReset() {
     // Reset the table
     tbody.html("");
 
+    // Reset the search results html
     search_results.html("");
 
+    // Re-initialize the table
     init();
 };
 
-// Define the reset button function
+// Define the HTML reset function
 function runHTMLReset() {
     
     // Select the tbody in the html table
@@ -164,9 +198,31 @@ function runHTMLReset() {
     // Reset the table
     tbody.html("");
 
+    // Reset the search results html
     search_results.html("");
 
 };
+
+function resetCategory() {
+    categoryDropdown.selectAll("option.dropdown-item").remove();
+}
+
+function resetSubCategory() {
+    subCategoryDropdown.selectAll("option.dropdown-item").remove();
+    
+}
+
+function resetCountry() {
+    countryDropdown.selectAll("option.dropdown-item").remove();
+}
+
+function resetState() {
+    stateDropdown.selectAll("option.dropdown-item").remove();
+}
+
+function resetStaffPick() {
+    staffPickDropdown.selectAll("option.dropdown-item").remove();
+}
 
     // Loop through each data point to convert
     // tableData.forEach(data => {
@@ -272,6 +328,120 @@ function runHTMLReset() {
         item.text(pick);
     });
     
+function updateDropdown(data, dropdown) {
+
+    if (dropdown != "category") {
+
+        resetCategory();
+
+        // Category
+        var category = data.map(id => id.category);
+
+        // GET RID OF DUPLICATES
+        // Convert the array to a set
+        var setCatNames = new Set(category);
+        // Convert the set back into an array
+        var uniqueCatNames = Array.from(setCatNames);
+
+        // For each city, append the name to a dropdown attribute
+        uniqueCatNames.forEach(category => {
+            
+            var item = categoryDropdown.append("option");
+            item.attr("class", "dropdown-item");
+            item.text(category);
+        });
+        
+        
+    }
+    if (dropdown != "sub_category") {
+
+        resetSubCategory();
+
+        // Sub-Category
+        var subCategory = data.map(id => id.sub_category);
+
+        // console.log(subCategory);
+
+        // GET RID OF DUPLICATES
+        // Convert the array to a set
+        var setSubCatNames = new Set(subCategory);
+        // Convert the set back into an array
+        var uniqueSubCatNames = Array.from(setSubCatNames);
+
+        // For each city, append the name to a dropdown attribute
+        uniqueSubCatNames.forEach(subCat => {
+            
+            var item = subCategoryDropdown.append("option");
+            item.attr("class", "dropdown-item");
+            item.text(subCat);
+        });
+        
+
+    }
+    if (dropdown != "country") {
+
+        resetCountry();
+
+        // Countries
+        var countries = data.map(id => id.country);
+
+        // GET RID OF DUPLICATES
+        // Convert the array to a set
+        var setCountryNames = new Set(countries);
+        // Convert the set back into an array
+        var uniqueCountryNames = Array.from(setCountryNames);
+
+        // For each city, append the name to a dropdown attribute
+        uniqueCountryNames.forEach(country => {
+            
+            var item = countryDropdown.append("option");
+            item.attr("class", "dropdown-item");
+            item.text(country);
+        });
+    }
+    if (dropdown != "state") {
+
+        resetState();
+
+        // State of Campaign
+        var state = data.map(id => id.state);
+
+        // GET RID OF DUPLICATES
+        // Convert the array to a set
+        var setState = new Set(state);
+        // Convert the set back into an array
+        var uniqueState = Array.from(setState);
+
+        // For each city, append the name to a dropdown attribute
+        uniqueState.forEach(the_state => {
+            
+            var item = stateDropdown.append("option");
+            item.attr("class", "dropdown-item");
+            item.text(the_state);
+        });
+    }
+    if (dropdown != "staff_pick") {
+
+        resetStaffPick();
+
+        // Staff Pick
+        var staff_pick = data.map(id => id.staff_pick);
+
+        // GET RID OF DUPLICATES
+        // Convert the array to a set
+        var setStaffPick = new Set(staff_pick);
+        // Convert the set back into an array
+        var uniqueStaffPick = Array.from(setStaffPick);
+
+        // For each city, append the name to a dropdown attribute
+        uniqueStaffPick.forEach(pick => {
+            
+            var item = staffPickDropdown.append("option");
+            item.attr("class", "dropdown-item");
+            item.text(pick);
+        });
+    }
+}
 
     // // Percent Funded
     // var percent_funded = tableData.map(id => id.percent_funded);
