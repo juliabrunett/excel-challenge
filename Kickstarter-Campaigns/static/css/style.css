@@ -12,6 +12,17 @@
 --columbia-blue: #C5E0EBff;
 --artichoke: #90A187ff; */
 
+/* Plotly */
+#country-breakdown {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 100%;
+    padding: 10px;
+}
+
+/* Button Group */
 #button-group {
     text-align: right;
 }

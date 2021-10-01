@@ -11,6 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="static/css/style.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body>
@@ -81,7 +82,6 @@
                         <img src="./images/Campaign_Outcomes.png" id="full-image"/>
                     </a>
                 </div>
-
             </div>
             <!-- GitHub Logo - link to repo -->
             <div class="col-md-2" id="github-logo">
@@ -115,8 +115,15 @@
 
             <p>Some limitations of the dataset include:</p>
             <ol><li>Looking at the campaigns by country, nearly 74% of the data is from the United States, which may not accurately predict the potential success of campaigns in other countries.</li>
+                <!-- Screenshot placeholder for plotly -->
+                <!-- <img src="./images/plotly_country.png" id="full-image"/> -->
+                <div id="country_breakdown"></div>
+
                 <li>Additionally, because theater is the largest category of campaigns, this could skew the success probabilities of other categories if the overall analysis was used to predict the potential for success of a campaign from another category.</li>
                 <ul><li>To accurately predict the success of future campaigns, it would be best to consider the specific category and sub-category success probabilities in addition to the whole.</li></ul>
+                <!-- Screenshot placeholder for plotly -->
+                <!-- <img src="./images/plotly_category.png" id="full-image"/> -->
+                <div id="category_breakdown"></div>
             </ol>
             </div>
         </div>
@@ -124,6 +131,10 @@
 
     </div>
 
+     <!--Import JavaScript & d3-->
+     <script src="https://d3js.org/d3.v5.min.js"></script>
+     <script src="./data/data.json"></script>
+     <script src="./static/js/plot.js"></script>
 </body>
 
 </html>
