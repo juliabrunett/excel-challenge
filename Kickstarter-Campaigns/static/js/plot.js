@@ -60,8 +60,8 @@ d3.json("./data/data.json").then(function(tableData) {
     }]
     
     var layout1 = {
-        height: 500,
-        width: 1000,
+        // height: 500,
+        // width: 1000,
         // margin: {"t": 0, "b": 0, "l": 0, "r": 0},
         showlegend: true,
         title: {
@@ -72,7 +72,9 @@ d3.json("./data/data.json").then(function(tableData) {
     }
     }
     
-    Plotly.newPlot('country_breakdown', data1, layout1)
+    var config = { responsive: true }
+
+    Plotly.newPlot('country_breakdown', data1, layout1, config);
 
     // Need count of category
     // Need category name
@@ -126,8 +128,8 @@ d3.json("./data/data.json").then(function(tableData) {
     }]
     
     var layout2 = {
-        height: 500,
-        width: 1000,
+        // height: 500,
+        // width: 1000,
         // margin: {"t": 0, "b": 0, "l": 0, "r": 0},
         showlegend: true,
         title: {
@@ -138,6 +140,8 @@ d3.json("./data/data.json").then(function(tableData) {
         }
     }
     
-    Plotly.newPlot('category_breakdown', data2, layout2)
+    var config = { responsive: true }
+
+    Plotly.newPlot('category_breakdown', data2, layout2, config);
 
 });

@@ -36,7 +36,7 @@
     /* margin-left: 2px; */
 }
 
-#github-logo img {
+#github-logo a img {
     align-self: center;
     padding: 20px;
 }
@@ -328,6 +328,21 @@ li a {
     text-align: center;
 }
 
+/* Media Query: when width is reduced 1200px*/
+@media (max-width: 1200px) {
+    /* Country Plotly Pie */
+    #country_breakdown .js-plotly-plot {
+        width: 50%;
+    }
+
+    /* Category Plotly Pie */
+    #category_breakdown .js-plotly-plot {
+        width: 50%;
+    }
+
+    
+}
+
 /* Media Query: when width is reduced 765px*/
 @media (max-width: 765px) {
     /* Body */
@@ -383,23 +398,23 @@ li a {
     }
 
     /* Visualization Preview: Images (goes with previewBox)  */
-    .visualization_preview img {
+    /* .visualization_preview img {
         float: left;
         width: 50%;
         padding: 5px;
         align-content: center;
-    }
+    } */
 
     /* Visualization Preview: Heading 2 */
-    .visualization_preview h2 {
+    /* .visualization_preview h2 {
         text-align: left;
-    }
+    } */
 
     /* Visualization Image: for each vis.html (main box) */
-    #visualization-image {
+    /* #visualization-image {
         width: 100%;
         padding: 10px;
-    }
+    } */
 
     /* Summary Box: for index.html */
     #summaryBox {
@@ -433,11 +448,26 @@ li a {
     }
 
     /* Comparisons Images: for comparisons.html */
-    #comparisons-image {
+    /* #comparisons-image {
         width: 100%;
         padding: 10px;
         align-content: center;
+    } */
+
+    #github-logo a img {
+        align-self: center;
+        padding: 20px;
     }
+
+    /* GitHub Logo */
+    #github-logo.col-md-2 {
+        background-color: white;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding: 0px;
+        align-items: center;
+        /* margin-left: 2px; */
+}
 }
 
 /* Media Query: when width is reduced 577px*/
